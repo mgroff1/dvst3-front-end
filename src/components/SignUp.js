@@ -22,8 +22,8 @@ const SubmitForm = ({ values, errors, touched, status }) => {
       <Form>
         <h2>Sign Up Form</h2>
           <Col>
-        <Label htmlFor="name">Name: </Label>
-        <Field id="name" type="text" name="name" placeholder="Name" />
+        <Label htmlFor="name">Username: </Label>
+        <Field id="name" type="text" name="username" placeholder="Name" />
         {touched.name && errors.name && 
           (<p className="errors">{errors.name})</p>)}
 
@@ -40,7 +40,7 @@ const SubmitForm = ({ values, errors, touched, status }) => {
         </Col><Col>
         <Label htmlFor="password">Confirm Password: </Label>
         <Field id="password" type="password" name="passwordconfirm" placeholder="Confirm Password" />
-        {touched.password && errors.password && <p className="errors">{errors.password}</p>}
+        {touched.password1 && errors.password1 && <p className="errors">{errors.password1}</p>}
         
         </Col>
         <br></br>
@@ -52,7 +52,7 @@ const SubmitForm = ({ values, errors, touched, status }) => {
 </Row>
       {members.map(member => (
         <ul key={member.id}>
-          <li>Name: {member.name}</li>
+          <li>Username: {member.name}</li>
           <li>Email: {member.email}</li>
           <li>Password: {member.password}</li>
         </ul>
@@ -62,15 +62,17 @@ const SubmitForm = ({ values, errors, touched, status }) => {
 };
 
 const FormikSignUpForm = withFormik({
-  mapPropsToValues({ name, email, password }) {
+  mapPropsToValues({ username, email, password, password1 }) {
     return {
-      name: name || "",
+      username: username || "",
       email: email || "",
       password: password || "",
+      passwordconfirm: password1 || "",
+      
     };
   },
   validationSchema: Yup.object().shape({
-    name: Yup.string()
+    username: Yup.string()
     .required("Name is required.")
     .min(2,'Choose a longer name!')
     .max(50, 'Choose a shorter name!'),
@@ -80,19 +82,25 @@ const FormikSignUpForm = withFormik({
     password: Yup.string()
     .required("Password is required.")
     .min(6,'Choose a stronger password!')
-    .max(30, 'Choose a shorter password!')
+    .max(30, 'Choose a shorter password!'),
+    // passwordconfirm: Yup.string()
+    // .matches(password, "Password must match.")
 }),
   handleSubmit(values, { resetForm, setErrors, setStatus }, ) {
     console.log("submitting", values);
+    const user = {username:values.username,
+      password:values.password,
+      email:values.email}
+      console.log(user);
     // change to filter through logins
     if (values.email === "tester@test.com") {
         setErrors({ email: "That email is already taken" });
     }else{
     axios
-      .post("https://reqres.in/api/users/", values)
+      .post("https://dvst3-be.herokuapp.com/api/users/register", user)
       .then(res => {
         console.log("success", res.data);
-        setStatus(res.data);
+        // setStatus(res.data);
         resetForm();
       })
       .catch(err => console.log("Error:", err.response));
