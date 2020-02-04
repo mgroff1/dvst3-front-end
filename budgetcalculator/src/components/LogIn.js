@@ -20,7 +20,7 @@ const SubmitForm = ({ values, errors, touched, status }) => {
     <div className="member-form">
         <Row>
       <Form>
-        Sign Up Form
+        Log In Form
           <Col>
         <Label htmlFor="name">Name: </Label>
         <Field id="name" type="text" name="name" placeholder="Name" />
@@ -42,7 +42,7 @@ const SubmitForm = ({ values, errors, touched, status }) => {
       
       </Form>
 
-      {/* delete for backend */}
+      {/* delete for backend log in authenticate goes here?*/}
 </Row>
       {members.map(member => (
         <ul key={member.id}>
@@ -55,7 +55,7 @@ const SubmitForm = ({ values, errors, touched, status }) => {
   );
 };
 
-const FormikSignUpForm = withFormik({
+const FormikLogInForm = withFormik({
   mapPropsToValues({ name, email, password }) {
     return {
       name: name || "",
@@ -93,4 +93,4 @@ const FormikSignUpForm = withFormik({
   }
 }
 })(SubmitForm);
-export default FormikSignUpForm;
+export default FormikLogInForm;
