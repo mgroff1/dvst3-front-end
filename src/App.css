@@ -47,6 +47,9 @@ h1 {
 .navbar-brand:visited{
   color: black;
 }
+.loader{
+  text-align:center;
+}
 .forms{
   width:45vw;
 }
