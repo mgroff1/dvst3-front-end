@@ -25,7 +25,7 @@ const SubmitForm = ({ history, values, errors, touched, status }) => {
         <Label htmlFor="username">Username: </Label>
         <Field id="username" type="text" name="username" placeholder="Userame" />
         {touched.username && errors.username && 
-          (<p className="errors">{errors.username})</p>)}
+          (<p className="errors">{errors.username}</p>)}
 
         </Col><Col>
         <Label htmlFor="password">Password: </Label>
