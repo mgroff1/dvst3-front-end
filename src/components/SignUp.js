@@ -22,10 +22,10 @@ const SubmitForm = ({ history, values, errors, touched, status }) => {
       <Form>
         <h2>Sign Up Form</h2>
           <Col>
-        <Label htmlFor="name">Username: </Label>
-        <Field id="name" type="text" name="username" placeholder="Name" />
-        {touched.name && errors.name && 
-          (<p className="errors">{errors.name})</p>)}
+        <Label htmlFor="username">Username: </Label>
+        <Field id="username" type="text" name="username" placeholder="Name" />
+        {touched.username && errors.username && 
+          (<p className="errors">{errors.username}</p>)}
 
         </Col><Col>
         <Label htmlFor="email">Email: </Label>
@@ -67,7 +67,7 @@ const FormikSignUpForm = withFormik({
   },
   validationSchema: Yup.object().shape({
     username: Yup.string()
-    .required("Name is required.")
+    .required("Username is required.")
     .min(2,'Choose a longer name!')
     .max(50, 'Choose a shorter name!'),
     email: Yup.string()
