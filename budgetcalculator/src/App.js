@@ -1,25 +1,19 @@
 import React from "react";
 import "./App.css";
-
-import AppM from "./calcs/AppM";
-import AppR from "./calcs/AppR";
+import {Route} from "react-router-dom";
 import SignUp from "./components/SignUp";
+import LogIn from  "./components/LogIn";
+import Calculator from  "./components/Calculator";
+import Header from "./components/Header";
 
 const App = () => {
   return (
-    <div id="flex">
-      <div className="monthly forms">
-    
-        <AppM />
-      </div>
-
-      <div className="relocate forms">
-      
-        <AppR />
-      </div>
-      {/* temporary home just to view */}
-      <SignUp />
-    </div>
+      <main>
+        <Header />
+        <Route exact path="/Calculator" render={props => <Calculator {...props} />} />
+        <Route exact path="/LogIn" render={props => <LogIn {...props} />} />
+        <Route exact path='/SignUp' render={props => <SignUp {...props}/>}/>
+      </main>
   );
 }
 
