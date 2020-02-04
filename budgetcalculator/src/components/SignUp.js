@@ -1,94 +1,96 @@
-import React, { useRef } from 'react';
-import { useForm } from 'react-hook-form';
-// import styled from 'styled-components';
+import React, { useState, useEffect } from "react";
+import { withFormik, Form, Field } from "formik";
+import * as Yup from "yup";
+import axios from "axios";
 
-const SignUp = () => {
-  const { handleSubmit, register, errors, watch } = useForm({});
-  const password = useRef({});
-  password.current = watch('password', '');
-  const onSubmit = async data => {
-    alert(JSON.stringify(data));
-  };
+import {Button, Col, Row, Label} from 'reactstrap';
+//import styled from "styled-components";
 
-  return(
-    <div class='seeker-signup-container'>
-      <h1>Domestic Violence Survivors Tool</h1>
-      <h2>Survivor Sign Up</h2>
 
-      <form onSubmit={handleSubmit(onSubmit)}>
-        <input
-          type='text'
-          name='username'
-          placeholder='Username'
-          ref={register({
-            required: 'You must enter a username',
-            minLength: {
-            value: 6,
-            message: 'Username must contain at least 6 characters'
-            },
-            maxLength: {
-              value: 15,
-              message: 'Username must contain 15 characters or less'
-            }
-          })}
-        />
-        <input
-          type='text'
-          name='full_name'
-          placeholder='Name'
-          ref={register({
-            required: 'You must enter your Name',
-            minLength: {
-            value: 6,
-            message: 'Name must contain at least 6 characters'
-            },
-            maxLength: {
-              value: 40,
-              message: 'Name must contain 40 characters or less'
-            }
-          })}
-        />
-        <input 
-          name='seekers_email'
-          placeholder='Email'
-          type='email'
-          ref={register({
-            required: 'You must enter an Email',
-            pattern: {
-              value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i,
-              message: 'Invalid email address'
-            }
-          })}
-        />
-        {errors.email && errors.email.message}
-        <input
-          name='password'
-          placeholder='Password'
-          type='password'
-          ref={register({
-            required: 'You must enter a password',
-            minLength: {
-              value: 6,
-              message: 'Password must have a least 6 characters'
-            }
-          })}
-        />
-        {errors.password && <p className='red'>{errors.password.message}</p>}
 
-        <input 
-          name='password_repeat'
-          placeholder='Confirm Password'
-          type='password'
-          ref={register({
-            validate: value =>
-              value === password.current || 'The passwords do not match'
-          })}
-        />
-        <input type='submit' onClick={handleSubmit(onSubmit)} />
-      </form>
+
+
+const SubmitForm = ({ values, errors, touched, status }) => {
+  const [members, setMembers] = useState([]);
+  useEffect(() => {
+    console.log("status has changed", status);
+    status && setMembers(members => [...members, status]);
+  }, [status]);
+  return (
+    <div className="member-form">
+        <Row>
+      <Form>
+        Log In Form
+          <Col>
+        <Label htmlFor="name">Name: </Label>
+        <Field id="name" type="text" name="name" placeholder="Name" />
+        {touched.name && errors.name && 
+          (<p className="errors">{errors.name})</p>)}
+
+        </Col><Col>
+        <Label htmlFor="email">Email: </Label>
+        <Field id="email" type="email" name="email" placeholder="Email" />
+        {touched.email && errors.email && <p className="errors">{errors.email}</p>}
+        
+        </Col><Col>
+        <Label htmlFor="password">Password: </Label>
+        <Field id="password" type="password" name="password" placeholder="Password" />
+        {touched.password && errors.password && <p className="errors">{errors.password}</p>}
+        
+        </Col>
+        <Button type="submit">Submit</Button>
+      
+      </Form>
+
+      {/* delete for backend log in authenticate goes here?*/}
+</Row>
+      {members.map(member => (
+        <ul key={member.id}>
+          <li>Name: {member.name}</li>
+          <li>Email: {member.email}</li>
+          <li>Password: {member.password}</li>
+        </ul>
+      ))}
     </div>
   );
 };
 
-
-export default SignUp;
+const FormikSignUpForm = withFormik({
+  mapPropsToValues({ name, email, password }) {
+    return {
+      name: name || "",
+      email: email || "",
+      password: password || "",
+    };
+  },
+  validationSchema: Yup.object().shape({
+    name: Yup.string()
+    .required("Name is required.")
+    .min(2,'Choose a longer name!')
+    .max(50, 'Choose a shorter name!'),
+    email: Yup.string()
+    .required("Email is required.")
+    .email('Email is not valid!'),
+    password: Yup.string()
+    .required("Password is required.")
+    .min(6,'Choose a stronger password!')
+    .max(30, 'Choose a shorter password!')
+}),
+  handleSubmit(values, { resetForm, setErrors, setStatus }, ) {
+    console.log("submitting", values);
+    // change to filter through logins
+    if (values.email === "tester@test.com") {
+        setErrors({ email: "That email is already taken" });
+    }else{
+    axios
+      .post("https://reqres.in/api/users/", values)
+      .then(res => {
+        console.log("success", res.data);
+        setStatus(res.data);
+        resetForm();
+      })
+      .catch(err => console.log("Error:", err.response));
+  }
+}
+})(SubmitForm);
+export default FormikSignUpForm;
