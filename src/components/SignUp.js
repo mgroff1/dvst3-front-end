@@ -1,7 +1,9 @@
 import React, { useState, useEffect } from "react";
 import { withFormik, Form, Field } from "formik";
+import {Link} from "react-router-dom";
 import * as Yup from "yup";
 import axios from "axios";   
+import Loader from "./Loader";
 
 import {Button, Col, Row, Label} from 'reactstrap';
 //import styled from "styled-components";
@@ -20,6 +22,7 @@ const SubmitForm = ({ history, values, errors, touched, status }) => {
     <div className="member-form">
         <Row>
       <Form>
+        <Loader />
         <h2>Sign Up Form</h2>
           <Col>
         <Label htmlFor="username">Username: </Label>
@@ -44,7 +47,8 @@ const SubmitForm = ({ history, values, errors, touched, status }) => {
         
         </Col>
         <br></br>
-        <Button type="submit">Submit</Button>
+        <Button type="submit">Sign Up</Button>
+        Already have an account? <Link to="/LogIn" className="navbar-brand">Log In</Link>
       
       </Form>
 
