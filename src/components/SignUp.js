@@ -10,7 +10,7 @@ import {Button, Col, Row, Label} from 'reactstrap';
 
 
 
-const SubmitForm = ({ values, errors, touched, status }) => {
+const SubmitForm = ({ history, values, errors, touched, status }) => {
   const [members, setMembers] = useState([]);
   useEffect(() => {
     console.log("status has changed", status);
@@ -50,13 +50,7 @@ const SubmitForm = ({ values, errors, touched, status }) => {
 
       {/* delete for backend log in authenticate goes here?*/}
 </Row>
-      {members.map(member => (
-        <ul key={member.id}>
-          <li>Username: {member.name}</li>
-          <li>Email: {member.email}</li>
-          <li>Password: {member.password}</li>
-        </ul>
-      ))}
+      
     </div>
   );
 };
@@ -81,30 +75,29 @@ const FormikSignUpForm = withFormik({
     .email('Email is not valid!'),
     password: Yup.string()
     .required("Password is required.")
-    .min(6,'Choose a stronger password!')
+    .min(4,'Choose a stronger password!')
     .max(30, 'Choose a shorter password!'),
     // passwordconfirm: Yup.string()
     // .matches(password, "Password must match.")
 }),
-  handleSubmit(values, { resetForm, setErrors, setStatus }, ) {
+  handleSubmit(values, { resetForm, setErrors, props }, ) {
     console.log("submitting", values);
     const user = {username:values.username,
       password:values.password,
       email:values.email}
       console.log(user);
-    // change to filter through logins
-    if (values.email === "tester@test.com") {
-        setErrors({ email: "That email is already taken" });
-    }else{
+
     axios
       .post("https://dvst3-be.herokuapp.com/api/users/register", user)
       .then(res => {
         console.log("success", res.data);
         // setStatus(res.data);
+        localStorage.setItem('token', res.data.token)
         resetForm();
+        props.history.push("/Calculator");
       })
       .catch(err => console.log("Error:", err.response));
-  }
+  
 }
 })(SubmitForm);
 export default FormikSignUpForm;
