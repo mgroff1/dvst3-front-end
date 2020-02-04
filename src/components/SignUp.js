@@ -23,7 +23,7 @@ const SubmitForm = ({ history, values, errors, touched, status }) => {
         <h2>Sign Up Form</h2>
           <Col>
         <Label htmlFor="username">Username: </Label>
-        <Field id="username" type="text" name="username" placeholder="Name" />
+        <Field id="username" type="text" name="username" placeholder="Username" />
         {touched.username && errors.username && 
           (<p className="errors">{errors.username}</p>)}
 
@@ -48,10 +48,9 @@ const SubmitForm = ({ history, values, errors, touched, status }) => {
       
       </Form>
 
-      {/* delete for backend log in authenticate goes here?*/}
-</Row>
+    </Row>
       
-    </div>
+  </div>
   );
 };
 
