@@ -20,7 +20,7 @@ const SubmitForm = ({ values, errors, touched, status }) => {
     <div className="member-form">
         <Row>
       <Form>
-        Log In Form
+        <h2>Sign Up Form</h2>
           <Col>
         <Label htmlFor="name">Name: </Label>
         <Field id="name" type="text" name="name" placeholder="Name" />
@@ -37,7 +37,13 @@ const SubmitForm = ({ values, errors, touched, status }) => {
         <Field id="password" type="password" name="password" placeholder="Password" />
         {touched.password && errors.password && <p className="errors">{errors.password}</p>}
         
+        </Col><Col>
+        <Label htmlFor="password">Confirm Password: </Label>
+        <Field id="password" type="password" name="passwordconfirm" placeholder="Confirm Password" />
+        {touched.password && errors.password && <p className="errors">{errors.password}</p>}
+        
         </Col>
+        <br></br>
         <Button type="submit">Submit</Button>
       
       </Form>

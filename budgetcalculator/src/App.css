@@ -29,7 +29,10 @@ h1 {
   color: var(--mainWhite);
   letter-spacing: 5px;
 }
-
+.member-form{
+  text-align: center;
+  background-color: white;
+}
 .forms{
   width:45vw;
 }
