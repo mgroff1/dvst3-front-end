@@ -33,6 +33,20 @@ h1 {
   text-align: center;
   background-color: white;
 }
+.mr-auto{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+}
+.navbar-brand{
+  text-decoration: none;
+}
+.navbar-brand:link{
+    color: black;
+}
+.navbar-brand:visited{
+  color: black;
+}
 .forms{
   width:45vw;
 }
