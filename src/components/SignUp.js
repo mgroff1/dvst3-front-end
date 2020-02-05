@@ -41,9 +41,9 @@ const SubmitForm = ({ history, values, errors, touched, status }) => {
         {touched.password && errors.password && <p className="errors">{errors.password}</p>}
         
         </Col><Col>
-        <Label htmlFor="password">Confirm Password: </Label>
-        <Field id="password" type="password" name="passwordconfirm" placeholder="Confirm Password" />
-        {touched.password1 && errors.password1 && <p className="errors">{errors.password1}</p>}
+        <Label htmlFor="passwordconfirm">Confirm Password: </Label>
+        <Field id="passwordconfirm" type="password" name="passwordconfirm" placeholder="Confirm Password" />
+        {touched.passwordconfirm && errors.passwordconfirm && <p className="errors">{errors.passwordconfirm}</p>}
         
         </Col>
         <br></br>
@@ -59,12 +59,12 @@ const SubmitForm = ({ history, values, errors, touched, status }) => {
 };
 
 const FormikSignUpForm = withFormik({
-  mapPropsToValues({ username, email, password, password1 }) {
+  mapPropsToValues({ username, email, password, passwordconfirm }) {
     return {
       username: username || "",
       email: email || "",
       password: password || "",
-      passwordconfirm: password1 || "",
+      passwordconfirm: passwordconfirm || "",
       
     };
   },
@@ -80,8 +80,12 @@ const FormikSignUpForm = withFormik({
     .required("Password is required.")
     .min(4,'Choose a stronger password!')
     .max(30, 'Choose a shorter password!'),
-    // passwordconfirm: Yup.string()
-    // .matches(password, "Password must match.")
+    passwordconfirm: Yup.string()
+    // .ofOne([Yup.ref('password'), null], "Password must match.")
+     .required("Confirm password is required.")
+     .test('passwords-match', "Password must match.", function(value) {
+       return this.parent.password ===value;
+     })
 }),
   handleSubmit(values, { resetForm, setErrors, props }, ) {
     console.log("submitting", values);
