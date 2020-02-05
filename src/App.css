@@ -1,4 +1,4 @@
-@import url("https://fonts.googleapis.com/css?family=Roboto&display=swap");
+@import url("https://fonts.googleapis.com/css?family=Montserrat|Roboto&display=swap");
 :root {
   --primaryColor: #f15025;
   --mainWhite: #fff;
@@ -14,7 +14,7 @@
 body {
   background: var(--mainGrey);
   color: var(--mainBlack);
-  font-family: "Roboto", sans-serif;
+  font-family: adobe-garamond-pro;
 }
 
 #flex{
@@ -40,12 +40,19 @@ h1 {
 }
 .navbar-brand{
   text-decoration: none;
+  color: rgba(26,26,26,.9);
+  font-family: 'Montserrat', sans-serif;
+  text-transform: uppercase;
 }
 .navbar-brand:link{
-    color: black;
+    color: rgba(26,26,26,.9);
+    font-family: 'Montserrat', sans-serif;
+    text-transform: uppercase;
 }
 .navbar-brand:visited{
-  color: black;
+  color: rgba(26,26,26,.9);
+  font-family: 'Montserrat', sans-serif;
+  text-transform: uppercase;
 }
 .loader{
   text-align:center;
