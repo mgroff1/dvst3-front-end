@@ -5,7 +5,8 @@ export default function Home() {
     return (
     <section className="welcome-page">
       <header>
-        <h1>Welcome to the Cost Calculator</h1>
+        <h2>Calculating the Cost of Moving</h2>
+<h3>can be the first step to putting yourself in a better situation</h3>
         <div className="loader"><Loader /></div>
       </header>
     </section>
