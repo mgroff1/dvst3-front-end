@@ -23,14 +23,15 @@ body {
   flex:1fr 1fr;
 }
 h1 {
-  color: rgba(26,26,26,.9);
-}
-h2 {
   text-align: center;
   text-transform: capitalize;
   margin: 2rem 0;
   color: var(--mainWhite);
   letter-spacing: 5px;
+  
+}
+h2 {
+  color: rgba(26,26,26,.9);
 }
 h3 {
   text-align: center;
@@ -51,23 +52,29 @@ h3 {
 }
 .navbar-brand{
   text-decoration: none;
-  color: rgba(26,26,26,.9);
+  color: #73cec5;
   font-family: 'Roboto', sans-serif;
+  text-transform: uppercase;
+  font-weight: bold;
 }
 .navbar-brand:link{
-    color: rgba(26,26,26,.9);
+  color: #73cec5;
     font-family: 'Roboto', sans-serif;
+    text-transform: uppercase;
+    font-weight: bold;
 }
 .navbar-brand:visited{
-  color: rgba(26,26,26,.9);
+  color: #73cec5;
   font-family: 'Roboto', sans-serif;
+  text-transform: uppercase;
+  font-weight: bold;
 }
 .primary{
-  color: rgba(26,26,26,.9);
+  color: #73cec5;
   font-family: 'Roboto', sans-serif;
   font-weight: bold;
   text-decoration: none;
-  border: 2px solid gray;
+  border: 2px solid #73cec5;
 }
 
 .loader{

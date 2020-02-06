@@ -18,7 +18,7 @@ const Header = () => {
     <div>
       <Navbar color="light" light expand="md">
       <NavLink><Link to="/Use" className="navbar-brand">+</Link></NavLink>
-      <NavbarBrand><h1>DVST3 Calculator</h1></NavbarBrand>
+      <NavbarBrand><h2>DVST3</h2></NavbarBrand>
         
           <Nav className="mr-auto" navbar>
             
