@@ -1,11 +1,14 @@
 import React from 'react';
 import {Link} from "react-router-dom";
 import {
-  Navbar,
-  NavbarBrand,
   Nav,
   NavLink
 } from 'reactstrap';
+import styled from "styled-components";
+
+const Navbar = styled.div`
+  background-color: white;
+  `;
 
 const Footer = () => {
 
