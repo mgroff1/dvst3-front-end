@@ -23,7 +23,6 @@ body {
   flex:1fr 1fr;
 }
 h1 {
-  text-transform: capitalize;
   color: rgba(26,26,26,.9);
 }
 h2 {

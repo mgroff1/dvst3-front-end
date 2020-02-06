@@ -22,13 +22,15 @@ const Header = () => {
         
           <Nav className="mr-auto" navbar>
             
-              <NavLink><Link to="/" className="navbar-brand">Home</Link></NavLink>
+          <NavLink className="navbar-brand" href="https://dvst3landingpage.netlify.com/">Home</NavLink>
               
               <NavLink><Link to="/Calculator" className="navbar-brand">Calculator</Link></NavLink>
             
               <NavLink><Link to="/LogIn" className="navbar-brand">Log In</Link></NavLink>
             
               <NavLink><Link to="/SignUp" className="navbar-brand">Sign Up</Link></NavLink>
+
+              <NavLink className="navbar-brand" href="https://dvst3landingpage.netlify.com/about">About Us</NavLink>
 
               <NavLink className="primary" href="http://www.weather.com">Exit Site</NavLink>
           </Nav>
