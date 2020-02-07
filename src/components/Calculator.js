@@ -5,7 +5,7 @@ import AppR from "../calcs/AppR";
 const Calculator = () => {
   return (
     <div id="flex">
-      <div className="monthly forms">
+      <div className = "monthly forms">
     
         <AppM />
       </div>

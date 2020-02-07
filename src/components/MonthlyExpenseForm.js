@@ -34,7 +34,7 @@ const MonthlyExpenseForm = ({
             name="amount"
             placeholder=" $"
             value={amount}
-            onChange={handleAmount}
+             onChange={handleAmount}
           />
         </div>
       </div>

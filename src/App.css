@@ -7,6 +7,25 @@
   --mainRed: #d50000;
   --mainGreen: #4caf50;
 }
+#canvas{
+  width:0;
+  height:0;
+  z-index: 5;
+}
+
+#cover{
+  z-index: 0;
+  background:transparent;
+  position:absolute;
+  width:20vw;
+  height:10vh;
+  left:25vw;
+  border:2px ridge black;
+  top:25vh;
+}
+
+
+
 * {
   margin: 0;
   box-sizing: border-box;
@@ -15,9 +34,12 @@ body {
   background: var(--mainGrey);
   color: var(--mainBlack);
   font-family: 'Roboto', sans-serif;
+  z-index: 1;
 }
 
 #flex{
+    z-index: 10;
+  background:black;
   width:90vw;
   display:flex;
   flex:1fr 1fr;
@@ -90,6 +112,7 @@ h3 {
   background: var(--mainWhite);
   padding-bottom: 2rem;
   border-radius: 2px;
+  z-index: 1;
 }
 .form-center {
   display: flex;
@@ -247,4 +270,11 @@ label {
   .info {
     flex: 0 0 50%;
   }
+}
+#canvas2{
+  width:20vw;
+  height:40vh;
+  z-index: 0;
+  top:-20vh;
+  position:relative;
 }
